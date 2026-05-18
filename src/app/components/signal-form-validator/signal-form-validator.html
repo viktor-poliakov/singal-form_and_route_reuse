@@ -1,0 +1,101 @@
+<pre>{{ registrationForm().value() | json }}</pre>
+<div class="login-container">
+  <div class="login-card">
+    <div class="glass-overlay"></div>
+    <div class="content">
+      <form class="form-group">
+        <div class="input-wrapper">
+          <label for="email">Email Address</label>
+          <div class="input-field">
+            <input
+              [class.invalid]="registrationForm.email().invalid() && registrationForm.email().touched()"
+              type="text"
+              id="email"
+              placeholder="name@example.com"
+              [formField]="registrationForm.email"
+            >
+          </div>
+          @if(registrationForm.email().touched()) {
+            @for(error of registrationForm.email().errors(); track error.kind) {
+              <small style="color: tomato">{{ error.message }}</small>
+            }
+          }
+        </div>
+
+        <div class="input-wrapper">
+          <label for="password">Password</label>
+          <div class="input-field">
+            <input
+              [class.invalid]="registrationForm.password().invalid() && registrationForm.password().touched()"
+              type="password"
+              id="password"
+              placeholder="••••••••"
+              [formField]="registrationForm.password"
+            >
+            @if(registrationForm.password().touched()) {
+              @for(error of registrationForm.password().errors(); track error.kind) {
+                <small style="color: tomato">{{ error.message }}</small>
+              }
+            }
+          </div>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="confirmPassword">Confirm password</label>
+          <div class="input-field">
+            <input
+              [class.invalid]="registrationForm.confirmPassword().invalid() && registrationForm.confirmPassword().dirty()"
+              type="password"
+              id="confirmPassword"
+              placeholder="••••••••"
+              [formField]="registrationForm.confirmPassword"
+            >
+            @if(registrationForm.confirmPassword().dirty()) {
+              @for(error of registrationForm.confirmPassword().errors(); track error.kind) {
+                <small style="color: tomato">{{ error.message }}</small>
+              }
+            }
+          </div>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="country">Country</label>
+          <div class="input-field">
+            <select id="country" [formField]="registrationForm.country">
+              <option value="">Select country</option>
+              <option value="Poland">Poland</option>
+              <option value="Greece">Greece</option>
+              <option value="US">US</option>
+            </select>
+          </div>
+        </div>
+
+        @if (!registrationForm.state().hidden()) {
+          <div class="input-wrapper">
+            <label for="state">State</label>
+            <div class="input-field">
+              <input
+                [class.invalid]="registrationForm.state().invalid() && registrationForm.state().touched()"
+                type="text"
+                id="state"
+                placeholder="Enter your state"
+                [formField]="registrationForm.state"
+              >
+              @if(registrationForm.state().touched()) {
+                @for(error of registrationForm.state().errors(); track error.kind) {
+                  <small style="color: tomato">{{ error.message }}</small>
+                }
+              }
+            </div>
+          </div>
+        }
+
+        <button [disabled]="registrationForm().invalid() || registrationForm().submitting()" type="submit" class="login-btn">
+          <span>Register</span>
+          <div class="btn-glow"></div>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+

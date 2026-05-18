@@ -1,0 +1,26 @@
+<pre>{{ userForm().value() | json }}</pre>
+<div class="form-container">
+  <div class="form-card">
+    <h1>Register</h1>
+
+    <form class="form-group">
+      <div class="input-field">
+        <input [formField]="userForm.department" type="text" placeholder="Department">
+      </div>
+
+      <div class="input-field">
+        <input [formField]="userForm.userName" type="text" placeholder="User Name*">
+        @for(error of userForm.userName().errors(); track error.kind) {
+          <small style="color: tomato">{{ error.message }}</small>
+        }
+      </div>
+
+      <div class="input-field outlined-field">
+        <label for="age">Age<span class="required">*</span></label>
+        <input [formField]="userForm.age" id="age" type="number">
+      </div>
+
+      <button type="submit" class="submit-btn" disabled>Submit</button>
+    </form>
+  </div>
+</div>

@@ -1,53 +1,54 @@
 <div class="login-container">
   <div class="login-card">
     <div class="glass-overlay"></div>
-    <div class="content">
-      <div class="header">
-        <h1>Welcome Back</h1>
-        <p>Please enter your details to sign in</p>
-      </div>
 
+    <div class="content">
       <form (submit)="onLogin($event)" class="form-group">
         <div class="input-wrapper">
           <label for="email">Email Address</label>
           <div class="input-field">
-            <i class="icon">@</i>
             <input
-              type="email"
+              [class.invalid]="loginForm.email().invalid() && loginForm.email().touched()"
+              type="text"
               id="email"
               placeholder="name@example.com"
-              [(ngModel)]="loginModel().email"
-              name="email"
-              required
+              [formField]="loginForm.email"
             >
           </div>
+          @if(loginForm.email().touched()) {
+            @for(error of loginForm.email().errors(); track error.kind) {
+              <small style="color: tomato">{{ error.message }}</small>
+            }
+          }
         </div>
 
         <div class="input-wrapper">
           <label for="password">Password</label>
           <div class="input-field">
-            <i class="icon">🔒</i>
             <input
+              [class.invalid]="loginForm.password().invalid() && loginForm.password().touched()"
               type="password"
               id="password"
               placeholder="••••••••"
-              [(ngModel)]="loginModel().password"
-              name="password"
-              required
+              [formField]="loginForm.password"
             >
+            @if(loginForm.password().invalid() && loginForm.password().touched()) {
+              <small style="color: tomato">Please enter a valid password</small>
+            }
           </div>
         </div>
 
-        <button type="submit" class="login-btn">
+        <button [disabled]="loginForm().invalid() || loginForm().submitting()" type="submit" class="login-btn">
           <span>Login</span>
           <div class="btn-glow"></div>
         </button>
       </form>
 
       <div class="footer">
-        <span>Don't have an account?</span>
-        <a href="#">Sign up</a>
+        <p>Email: {{ loginForm.email().value() }}</p>
+        <p>Password: {{ loginForm.password().value() }}</p>
       </div>
     </div>
   </div>
 </div>
+

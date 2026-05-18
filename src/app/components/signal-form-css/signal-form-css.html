@@ -1,0 +1,54 @@
+<pre>{{ registerForm().value() | json }}</pre>
+<div class="form-container">
+  <div class="form-card">
+    <h1>Register</h1>
+
+    <form class="form-group">
+      <div class="input-wrapper">
+        <label for="username">Username <span class="required">*</span></label>
+        <div class="input-field">
+          <input [formField]="registerForm.userName" type="text" id="username" placeholder="Enter username">
+          @for(error of registerForm.userName().errors(); track error.kind) {
+            <small style="color: tomato">{{ error.message }}</small>
+          }
+        </div>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="age">Age <span class="required">*</span></label>
+        <div class="input-field">
+          <input [formField]="registerForm.age" type="text" id="age" placeholder="Enter age">
+          @for(error of registerForm.age().errors(); track error.kind) {
+            <small style="color: tomato">{{ error.message }}</small>
+          }
+        </div>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="street">Street <span class="required">*</span></label>
+        <div class="input-field">
+          <input [formField]="registerForm.contactDetails.street" type="text" id="street" placeholder="Enter street name">
+          @for(error of registerForm.contactDetails.street().errors(); track error.kind) {
+            <small style="color: tomato">{{ error.message }}</small>
+          }
+        </div>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="number">Number <span class="required">*</span></label>
+        <div class="input-field">
+          <input [formField]="registerForm.contactDetails.number" type="text" id="number" placeholder="Enter number">
+        </div>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="postal">Postal Code <span class="required">*</span></label>
+        <div class="input-field">
+          <input [formField]="registerForm.contactDetails.postalCode" type="text" id="postal" placeholder="Enter postal code">
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+</div>
