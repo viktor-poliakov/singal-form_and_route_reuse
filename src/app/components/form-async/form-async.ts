@@ -3,6 +3,7 @@ import {FieldTree, form, FormField, required, validateAsync, validateHttp} from 
 import {JsonPipe} from '@angular/common';
 import {AuthService} from '../../services/auth-service';
 import {rxResource} from '@angular/core/rxjs-interop';
+import {debounce, debounceTime} from 'rxjs';
 
 export type TForm = {
   department: string;
@@ -39,10 +40,11 @@ export class FormAsync {
     required(form.age)
     required(form.userName)
     validateAsync(form.userName, {
-      params: ({value}) => value(),
+      params: ({ value }) => value(),
       factory: this.createUsernameResource,
-      onSuccess: (result) =>
-        result ? null : { kind: 'usernameTaken', message: 'Username taken' },
+      onSuccess: (result) => {
+        return  result ? null : { kind: 'usernameTaken', message: 'Username taken' }
+      },
       onError: () => ({
         kind: 'serverError',
         message: 'Could not verify username',

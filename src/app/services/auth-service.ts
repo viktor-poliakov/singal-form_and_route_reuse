@@ -1,6 +1,6 @@
-import { Injectable} from '@angular/core';
-import {catchError, delay, of} from 'rxjs';
-import {TForm} from '../components/form-async/form-async';
+import { Injectable } from '@angular/core';
+import { delay, of } from 'rxjs';
+import { TForm } from '../components/form-async/form-async';
 
 @Injectable({
   providedIn: 'root',
@@ -8,14 +8,11 @@ import {TForm} from '../components/form-async/form-async';
 export class AuthService {
 
   public userNameIsAvailable(userName: string) {
-    if (userName.toLowerCase() === "poliakov") {
-      return of(false)
-        .pipe(
-          delay(300),
-          catchError(() => of(false))
-        )
-    }
-    return of(true).pipe(delay(300))
+    const isAvailable = userName.toLowerCase() !== 'poliakov';
+
+    return of(isAvailable).pipe(
+      delay(1000)
+    );
   }
 
   public register(payload: TForm) {

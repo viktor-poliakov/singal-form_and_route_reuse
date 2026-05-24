@@ -1,8 +1,8 @@
-import {Component, signal, WritableSignal} from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { FieldTree, form, FormField } from '@angular/forms/signals';
 
-import {JsonPipe} from '@angular/common';
-import {registerFormSchema} from './schema';
+import { JsonPipe} from '@angular/common';
+import { registerFormSchema } from './schema';
 
 export interface IRegisterFormModel {
   email: string;
@@ -16,7 +16,10 @@ export interface IRegisterFormModel {
 @Component({
   selector: 'app-signal-form',
   standalone: true,
-  imports: [FormField, JsonPipe],
+  imports: [
+    FormField,
+    JsonPipe
+  ],
   templateUrl: './signal-form-validator.html',
   styleUrl: './signal-form-validator.scss'
 })

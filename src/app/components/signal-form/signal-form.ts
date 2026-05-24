@@ -1,7 +1,16 @@
-import {Component, inject, signal, WritableSignal} from '@angular/core';
-import {email, FieldTree, form, FormField, required, Schema, schema, submit} from '@angular/forms/signals';
-import {firstValueFrom} from 'rxjs';
-import {LoginService} from '../../services/login.service';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
+import {
+  email,
+  FieldTree,
+  form,
+  FormField,
+  required,
+  Schema,
+  schema,
+  submit
+} from '@angular/forms/signals';
+import { firstValueFrom}  from 'rxjs';
+import { LoginService } from '../../services/login.service';
 
 export interface ILoginFormModel {
   email: string;

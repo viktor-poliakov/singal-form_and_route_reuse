@@ -12,7 +12,11 @@ export const routes: Routes = [
   },
   {
     path: 'validator',
-    component: SignalFormValidator
+    component: SignalFormValidator,
+    // Флаг читает наша CachedRouteReuseStrategy: при уходе с /validator
+    // компонент будет отсоединён от DOM и сохранён в кэше, а при возврате —
+    // восстановлен без пересоздания (состояние формы, сигналы и подписки сохранятся).
+    data: { reuse: true },
   },
   {
     path: 'css',

@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {ILoginFormModel} from '../components/signal-form/signal-form';
-import {delay, of} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { ILoginFormModel } from '../components/signal-form/signal-form';
+import { delay, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
